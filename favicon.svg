@@ -1,0 +1,33 @@
+<svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#050505">
+        <!-- Letter A (Spine, Left Leg, Crossbar) -->
+        <g class="letter-a">
+            <!-- Main Spine -->
+            <rect x="46" y="20" width="8" height="60" />
+            <!-- Left Leg of A -->
+            <polygon points="46,20 54,20 24,80 16,80" />
+            <!-- Crossbar of A -->
+            <rect x="33" y="54" width="13" height="3" />
+            <!-- Serifs -->
+            <rect x="11" y="78" width="18" height="2" />
+            <rect x="39" y="78" width="22" height="2" />
+            <rect x="39" y="20" width="9" height="2" />
+        </g>
+        <!-- Letter P (Loop structure) -->
+        <g class="letter-p">
+            <path d="
+                M 54 20 
+                H 68 
+                C 85 20, 85 52, 68 52 
+                H 54 
+                V 20 
+                Z 
+                M 54 27 
+                H 65 
+                C 75 27, 75 45, 65 45 
+                H 54 
+                V 27 
+                Z" fill-rule="evenodd" />
+        </g>
+    </g>
+</svg>

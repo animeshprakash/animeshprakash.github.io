@@ -1,11 +1,15 @@
 :root {
-    --bg-primary: #F2F2F2; /* Editorial off-white */
-    --text-primary: #050505; /* Deep black */
-    --text-secondary: #666666; /* Grey for minor details */
-    --accent-red: #D32F2F; /* Requested red accent */
+    --bg-primary: #F2F2F2;
+    /* Editorial off-white */
+    --text-primary: #050505;
+    /* Deep black */
+    --text-secondary: #666666;
+    /* Grey for minor details */
+    --accent-red: #D32F2F;
+    /* Requested red accent */
 
     --font-sans: 'Inter', sans-serif;
-    --font-serif: 'Times New Roman', Times, 'Playfair Display', serif; 
+    --font-serif: 'Times New Roman', Times, 'Playfair Display', serif;
 }
 
 * {
@@ -50,12 +54,15 @@ a {
 html.lenis {
     height: auto;
 }
+
 .lenis.lenis-smooth {
     scroll-behavior: auto;
 }
+
 .lenis.lenis-smooth [data-lenis-prevent] {
     overscroll-behavior: contain;
 }
+
 .lenis.lenis-stopped {
     overflow: hidden;
 }
@@ -102,11 +109,13 @@ html.lenis {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    background: rgba(242, 242, 242, 0.85); /* var(--bg-primary) equivalent */
+    background: rgba(242, 242, 242, 0.85);
+    /* var(--bg-primary) equivalent */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     color: var(--text-primary);
-    opacity: 0; /* Hidden before preloader finishes */
+    opacity: 0;
+    /* Hidden before preloader finishes */
 }
 
 .nav-brand {
@@ -136,6 +145,7 @@ html.lenis {
     background-color: var(--accent-red);
     transition: width 0.3s ease;
 }
+
 .nav-contact:hover::after {
     width: 100%;
 }
@@ -166,7 +176,8 @@ html.lenis {
     letter-spacing: 2px;
     color: var(--text-secondary);
     margin-bottom: 4rem;
-    opacity: 0; /* Animated in */
+    opacity: 0;
+    /* Animated in */
 }
 
 .status-indicator {
@@ -178,15 +189,24 @@ html.lenis {
 .pulse-dot {
     width: 8px;
     height: 8px;
-    background-color: #4CAF50; /* Green for available */
+    background-color: #4CAF50;
+    /* Green for available */
     border-radius: 50%;
     animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
 }
 
 .hero-title {
@@ -201,19 +221,23 @@ html.lenis {
 /* For GSAP line reveals */
 .hero-title .line {
     overflow: hidden;
-    padding-bottom: 10px; /* Prevent clipping descenders */
+    padding-bottom: 10px;
+    /* Prevent clipping descenders */
     margin-bottom: -10px;
 }
+
 .hero-title .word {
     display: inline-block;
-    transform: translateY(110%); /* Hidden initially */
+    transform: translateY(110%);
+    /* Hidden initially */
 }
 
 .hero-bottom-text {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    opacity: 0; /* Animated in */
+    opacity: 0;
+    /* Animated in */
 }
 
 .bio {
@@ -249,17 +273,38 @@ html.lenis {
 .placeholder-section {
     height: 100vh;
     padding: 6rem 4rem;
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .navbar { padding: 1.5rem 2rem; }
-    .hero { padding: 8rem 2rem 2rem 2rem; }
-    .hero-top-text { flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
-    .hero-bottom-text { flex-direction: column-reverse; align-items: flex-start; gap: 2rem; }
-    .bio { font-size: 1.1rem; }
-    .loader-logo { width: 25vw; }
+    .navbar {
+        padding: 1.5rem 2rem;
+    }
+
+    .hero {
+        padding: 8rem 2rem 2rem 2rem;
+    }
+
+    .hero-top-text {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-bottom-text {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .bio {
+        font-size: 1.1rem;
+    }
+
+    .loader-logo {
+        width: 25vw;
+    }
 }
 
 /* ================= EXPERIENCE SECTION ================= */
@@ -281,7 +326,8 @@ html.lenis {
 .split-left {
     flex: 0 0 40%;
     position: sticky;
-    top: 8rem; /* Offset for sticky */
+    top: 8rem;
+    /* Offset for sticky */
     height: fit-content;
 }
 
@@ -310,7 +356,8 @@ html.lenis {
     padding-left: 2rem;
     border-left: 2px solid rgba(255, 255, 255, 0.1);
     position: relative;
-    opacity: 0; /* Wait for GSAP */
+    opacity: 0;
+    /* Wait for GSAP */
     transform: translateY(50px);
 }
 
@@ -394,15 +441,16 @@ html.lenis {
     background: #FFFFFF;
     padding: 3rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    opacity: 0; /* Wait for GSAP */
+    opacity: 0;
+    /* Wait for GSAP */
     transform: translateY(50px);
 }
 
 .qual-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
 }
 
 .qual-card-icon {
@@ -435,7 +483,8 @@ html.lenis {
 
 .tag {
     padding: 0.5rem 1rem;
-    background: rgba(211, 47, 47, 0.1); /* Light red tint */
+    background: rgba(211, 47, 47, 0.1);
+    /* Light red tint */
     color: var(--text-primary);
     border-radius: 20px;
     font-size: 0.9rem;
@@ -448,12 +497,15 @@ html.lenis {
     .split-container {
         flex-direction: column;
     }
+
     .split-left {
         position: relative;
         top: 0;
         margin-bottom: 4rem;
     }
-    .split-section, .qual-section {
+
+    .split-section,
+    .qual-section {
         padding: 6rem 2rem;
     }
 }
@@ -483,7 +535,8 @@ html.lenis {
     padding: 3rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    opacity: 0; /* Wait for GSAP */
+    opacity: 0;
+    /* Wait for GSAP */
     transform: translateY(50px);
     transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
 }
@@ -518,10 +571,30 @@ html.lenis {
 
 .project-title.has-logo {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    gap: 5rem;
+    /* Increased to prevent logo/text overlap */
 }
 
-.devspace-logo, .techex-logo {
+.devspace-logo {
+    width: clamp(250px, 30vw, 450px);
+    /* Increased significantly due to wider aspect ratio */
+    height: auto;
+    filter: opacity(0.85);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    overflow: visible;
+}
+
+.tanbih-logo {
+    width: clamp(180px, 20vw, 300px);
+    height: auto;
+    filter: opacity(0.85);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    overflow: visible;
+}
+
+.techex-logo {
     width: clamp(150px, 15vw, 250px);
     height: auto;
     filter: opacity(0.85);
@@ -529,8 +602,13 @@ html.lenis {
     overflow: visible;
 }
 
-.project-card:hover .devspace-logo {
+.project-card:hover .tanbih-logo {
     transform: scale(1.08) translateX(10px);
+    filter: drop-shadow(0 0 15px rgba(211, 47, 47, 0.3)) opacity(1);
+}
+
+.project-card:hover .devspace-logo {
+    transform: scale(1.05) translateX(10px);
     filter: drop-shadow(0 10px 20px rgba(38, 192, 212, 0.4)) opacity(1);
 }
 
@@ -540,17 +618,20 @@ html.lenis {
 }
 
 .ds-cyan {
-    fill: #00aaff; /* Match user SVG cyan */
+    fill: #00aaff;
+    /* Match user SVG cyan */
     transition: fill 0.4s ease;
 }
 
 .ds-white {
-    fill: #fffaff; /* Match user SVG white */
+    fill: #fffaff;
+    /* Match user SVG white */
     transition: fill 0.4s ease, transform 0.4s ease, letter-spacing 0.4s ease;
 }
 
 .ds-logo-a {
-    transform-origin: 1400px 153px; /* Center of the A in the large viewbox */
+    transform-origin: 1400px 153px;
+    /* Center of the A in the large viewbox */
     transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1);
     perspective: 1000px;
 }
@@ -570,8 +651,8 @@ html.lenis {
 }
 
 .project-card:hover .ds-logo-a {
-    /* Cool 3D Spin + Pop */
-    transform: translateY(-20px) scale(1.15) rotateY(180deg); 
+    /* 3D Spin - Simplified for better flow */
+    transform: translateY(-20px) scale(1.15) rotateY(360deg);
 }
 
 .project-card:hover .ds-logo-a path {
@@ -587,6 +668,27 @@ html.lenis {
 .ds-layer {
     transition: transform 0.6s ease;
     transform-origin: center;
+}
+
+/* Tanbih Specific Animations */
+.tn-text {
+    font-family: var(--font-sans);
+    font-weight: 800;
+    font-size: 65px;
+    letter-spacing: -2px;
+}
+
+.tn-dot {
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.project-card:hover .tn-dot {
+    fill: #ffffff;
+    transform: translateY(-5px);
+}
+
+.project-card:hover .tn-text {
+    fill: var(--accent-red);
 }
 
 /* Internal SVG Animations */
@@ -624,21 +726,25 @@ html.lenis {
 
 /* Hover States for Internals */
 .project-card:hover .techex-bg-layer {
-    transform: rotate(2deg) scale(1.05); /* Springy rotation and scaling */
+    transform: rotate(2deg) scale(1.05);
+    /* Springy rotation and scaling */
 }
 
 .project-card:hover .techex-bg {
-    fill: var(--accent-red); /* Shifts to theme red */
+    fill: var(--accent-red);
+    /* Shifts to theme red */
 }
 
 .project-card:hover .techex-text-main {
     fill: #ffffff;
-    letter-spacing: 2px; /* Expands text */
+    letter-spacing: 2px;
+    /* Expands text */
 }
 
 .project-card:hover .techex-text-stroke {
     opacity: 0.6;
-    transform: scale(1.15) translateY(-5px); /* Ripple effect outwards */
+    transform: scale(1.15) translateY(-5px);
+    /* Ripple effect outwards */
     stroke-width: 2px;
 }
 
@@ -717,7 +823,7 @@ html.lenis {
     justify-content: space-between;
     align-items: center;
     padding-top: 2rem;
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 0.9rem;
 }
 
@@ -730,21 +836,27 @@ html.lenis {
 
 /* Responsive updates for Projects & Footer */
 @media (max-width: 900px) {
-    .projects-section, .footer {
+
+    .projects-section,
+    .footer {
         padding: 6rem 2rem;
     }
+
     .project-info {
         flex-direction: column;
         align-items: flex-start;
         gap: 1.5rem;
     }
+
     .project-card {
         padding: 2.5rem 0;
     }
+
     .project-card:hover {
         padding-left: 1rem;
         padding-right: 1rem;
     }
+
     .footer-bottom {
         flex-direction: column;
         gap: 1.5rem;
