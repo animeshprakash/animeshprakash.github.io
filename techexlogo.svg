@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 711 296" width="711" height="296">
+  <!-- Background Rectangle: Rotated -4.9 degrees from center -->
+  <g id="techex-bg-layer" transform="translate(355, 148) rotate(-4.9)">
+    <rect id="techex-bg" x="-345" y="-118" width="690" height="236" fill="#fb8449" />
+  </g>
+
+  <!-- Text: Straight (0 degrees) and centered -->
+  <g id="techex-text-layer" transform="translate(355, 148)">
+    <text id="techex-text" x="0" y="65" font-family="Inter, -apple-system, BlinkMacSystemFont, Arial, sans-serif" font-size="200" font-weight="800" fill="#000000" text-anchor="middle" letter-spacing="-4">TechEx</text>
+  </g>
+</svg>
