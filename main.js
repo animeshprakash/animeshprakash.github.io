@@ -40,6 +40,7 @@ window.addEventListener('load', () => {
         onComplete: () => {
             lenis.start();
             document.body.style.overflow = '';
+            setTimeout(() => ScrollTrigger.refresh(), 100);
         }
     });
 
@@ -104,7 +105,7 @@ window.addEventListener('load', () => {
 const animateItems = gsap.utils.toArray('.item-animate');
 
 animateItems.forEach((item) => {
-    gsap.to(item, {
+    let anim = gsap.to(item, {
         scrollTrigger: {
             trigger: item,
             start: "top 85%", // Trigger when top of element hits 85% of viewport
@@ -114,6 +115,19 @@ animateItems.forEach((item) => {
         y: 0,
         duration: 0.8,
         ease: "power3.out"
+    });
+
+    item.addEventListener('click', () => {
+        anim.restart();
+        const innerElements = item.querySelectorAll('*');
+        if (innerElements.length) {
+            gsap.getTweensOf(innerElements).forEach(t => t.restart());
+        }
+        const amdocsGif = item.querySelector('#amdocsGif');
+        if (amdocsGif) {
+            const src = amdocsGif.getAttribute('data-src');
+            amdocsGif.src = `${src}?t=${new Date().getTime()}`;
+        }
     });
 });
 
@@ -132,3 +146,188 @@ revealTitles.forEach((title) => {
         ease: "power2.out"
     });
 });
+
+// ==========================================
+// EXPERIENCE LOGO ANIMATIONS
+// ==========================================
+
+// EY Logo internal path animation (staggered pop-in)
+const eyAnim = gsap.from('.ey-path', {
+    scrollTrigger: {
+        trigger: '.ey-svg',
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+    },
+    opacity: 0,
+    y: 30,
+    scale: 0.8,
+    transformOrigin: "center center",
+    stagger: 0.03,
+    duration: 0.8,
+    ease: "back.out(1.5)",
+    delay: 0.1
+});
+
+const eySvg = document.querySelector('.ey-svg');
+if (eySvg) {
+    eySvg.addEventListener('mouseenter', () => eyAnim.restart());
+}
+
+// Layered QCRI Logo animation (staggered pop-in)
+const qcriAnim = gsap.from('.anim-layer', {
+    scrollTrigger: {
+        trigger: '.qcri-svg',
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+    },
+    opacity: 0,
+    y: 30,
+    scale: 0.8,
+    transformOrigin: "center center",
+    stagger: 0.15,
+    duration: 0.8,
+    ease: "back.out(1.5)",
+    delay: 0.1
+});
+
+const qcriSvg = document.querySelector('.qcri-svg');
+if (qcriSvg) {
+    qcriSvg.addEventListener('mouseenter', () => qcriAnim.restart());
+}
+
+
+// ==========================================
+// AMDOCS GIF PLAY ON VIEW & HOVER
+// ==========================================
+const amdocsGif = document.getElementById('amdocsGif');
+if (amdocsGif) {
+    const playGif = () => {
+        const src = amdocsGif.getAttribute('data-src');
+        amdocsGif.src = `${src}?t=${new Date().getTime()}`;
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                playGif();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(amdocsGif);
+
+    amdocsGif.addEventListener('mouseenter', playGif);
+}
+
+// ==========================================
+// MOBILE MENU
+// ==========================================
+(function () {
+    const hamburger = document.getElementById('navHamburger');
+    const menu = document.getElementById('mobileMenu');
+    const closeBtn = document.getElementById('mobileMenuClose');
+    const navItems = menu ? menu.querySelectorAll('.mobile-nav-label') : [];
+    const navLinks = menu ? menu.querySelectorAll('.mobile-nav-item') : [];
+
+    if (!hamburger || !menu || !closeBtn) return;
+
+    let menuOpen = false;
+    let openTl = null;
+
+    function buildOpenTimeline() {
+        const tl = gsap.timeline({ paused: true });
+
+        // Slide menu in from the right
+        tl.to(menu, {
+            x: '0%',
+            duration: 0.55,
+            ease: 'power3.inOut'
+        }, 0);
+
+        // Stagger nav labels up from below
+        tl.fromTo(navItems,
+            { y: '110%', opacity: 0 },
+            {
+                y: '0%',
+                opacity: 1,
+                duration: 0.55,
+                stagger: 0.075,
+                ease: 'power3.out'
+            },
+            0.15
+        );
+
+        return tl;
+    }
+
+    function openMenu() {
+        menu.classList.add('is-open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        menuOpen = true;
+        lenis.stop();
+
+        // Reset nav items before animating
+        gsap.set(navItems, { y: '110%', opacity: 0 });
+        gsap.set(menu, { x: '100%' });
+
+        if (openTl) openTl.kill();
+        openTl = buildOpenTimeline();
+        openTl.play();
+    }
+
+    function closeMenu() {
+        hamburger.setAttribute('aria-expanded', 'false');
+        menuOpen = false;
+
+        // Reverse: slide menu out to the right
+        gsap.to(menu, {
+            x: '100%',
+            duration: 0.45,
+            ease: 'power3.inOut',
+            onComplete: () => {
+                menu.classList.remove('is-open');
+                lenis.start();
+            }
+        });
+
+        // Quickly fade out labels simultaneously
+        gsap.to(navItems, {
+            y: '110%',
+            opacity: 0,
+            duration: 0.3,
+            stagger: 0.04,
+            ease: 'power2.in'
+        });
+    }
+
+    hamburger.addEventListener('click', () => {
+        if (!menuOpen) openMenu();
+    });
+
+    closeBtn.addEventListener('click', () => {
+        if (menuOpen) closeMenu();
+    });
+
+    // Close menu on nav link click and scroll to section
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            closeMenu();
+            // After close animation, scroll to target
+            setTimeout(() => {
+                const target = document.querySelector(href);
+                if (target) {
+                    lenis.scrollTo(target, { duration: 1.2, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+                }
+            }, 480);
+        });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menuOpen) closeMenu();
+    });
+}());
+

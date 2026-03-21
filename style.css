@@ -210,12 +210,13 @@ html.lenis {
 }
 
 .hero-title {
-    font-size: clamp(4rem, 9vw, 12rem);
+    font-size: clamp(3.5rem, 8.5vw, 10.5rem);
     font-weight: 800;
     line-height: 0.9;
     letter-spacing: -0.03em;
     text-transform: uppercase;
     margin-bottom: 6rem;
+    width: 100%;
 }
 
 /* For GSAP line reveals */
@@ -386,6 +387,30 @@ html.lenis {
     margin-bottom: 0.5rem;
 }
 
+.amdocs-title-gif {
+    height: 7.5rem;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.exp-logo {
+    height: 5.5rem;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: left center;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.exp-item:hover .exp-logo {
+    transform: scale(1.05) translateX(10px);
+    filter: drop-shadow(0 10px 15px rgba(255, 255, 255, 0.15));
+}
+
 .exp-role {
     font-size: 1.2rem;
     margin-bottom: 2rem;
@@ -424,6 +449,10 @@ html.lenis {
 .qual-container {
     max-width: 1400px;
     margin: 0 auto;
+}
+
+.item-animate {
+    cursor: pointer;
 }
 
 .qual-header {
@@ -571,10 +600,9 @@ html.lenis {
 
 .project-title.has-logo {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    gap: 5rem;
-    /* Increased to prevent logo/text overlap */
+    gap: 2.5rem;
 }
 
 .devspace-logo {
@@ -668,6 +696,17 @@ html.lenis {
 .ds-layer {
     transition: transform 0.6s ease;
     transform-origin: center;
+}
+
+/* Tanbih Subtext */
+.tanbih-subtext {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 220px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
 }
 
 /* Tanbih Specific Animations */
@@ -862,3 +901,195 @@ html.lenis {
         gap: 1.5rem;
     }
 }
+.anim-layer {
+    transform-box: fill-box;
+    transform-origin: center center;
+}
+
+/* ================= MOBILE HAMBURGER BUTTON ================= */
+.nav-hamburger {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: var(--text-primary);
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.nav-hamburger:active {
+    transform: scale(0.92);
+}
+
+.hamburger-bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* ================= MOBILE FULL-SCREEN MENU ================= */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--text-primary); /* #050505 */
+    color: #ffffff;
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    /* Initially off-screen to the right */
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: none; /* GSAP handles animation */
+    overflow: hidden;
+}
+
+.mobile-menu.is-open {
+    visibility: visible;
+}
+
+/* Header row: brand name left, close button right */
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem 1.75rem 0 1.75rem;
+    flex-shrink: 0;
+}
+
+.mobile-menu-brand {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #ffffff;
+}
+
+/* Peach close button */
+.mobile-menu-close {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #f2b5a0; /* Peach from reference */
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.mobile-menu-close:active {
+    transform: scale(0.92);
+}
+
+/* Navigation links area */
+.mobile-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1.75rem;
+    overflow: hidden;
+}
+
+/* Divider lines with dot caps */
+.mobile-nav-divider {
+    position: relative;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.25);
+    margin: 0 0;
+    flex-shrink: 0;
+}
+
+.mobile-nav-divider::before,
+.mobile-nav-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.mobile-nav-divider::before {
+    left: 0;
+}
+
+.mobile-nav-divider::after {
+    right: 0;
+}
+
+/* Individual nav links */
+.mobile-nav-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 0;
+    text-decoration: none;
+    color: #ffffff;
+    transition: color 0.3s ease;
+    overflow: hidden; /* clip GSAP translateY */
+}
+
+.mobile-nav-item:hover .mobile-nav-label {
+    color: var(--accent-red);
+}
+
+.mobile-nav-label {
+    font-size: clamp(3rem, 13vw, 5.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-index {
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.45);
+    align-self: flex-end;
+    margin-bottom: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* ================= MOBILE MENU RESPONSIVE SHOW/HIDE ================= */
+@media (max-width: 768px) {
+    /* Show hamburger, hide regular nav links */
+    .nav-hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    /* On desktop: ensure menu is completely hidden */
+    .mobile-menu {
+        display: none !important;
+    }
+
+    .nav-hamburger {
+        display: none !important;
+    }
+}
+

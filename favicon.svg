@@ -1,5 +1,18 @@
-<svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <g fill="#050505">
+<svg width="64" height="64" viewBox="10 15 80 75" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+            <feOffset dx="2" dy="2" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.7"/>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g fill="#FFFFFF" filter="url(#dropShadow)">
         <!-- Letter A (Spine, Left Leg, Crossbar) -->
         <g class="letter-a">
             <!-- Main Spine -->
