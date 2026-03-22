@@ -131,11 +131,14 @@ html.lenis {
     letter-spacing: 1px;
 }
 
-.nav-contact {
+/* Desktop nav links — underline on hover, red when active section */
+.nav-link {
     position: relative;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
 }
 
-.nav-contact::after {
+.nav-link::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -146,8 +149,23 @@ html.lenis {
     transition: width 0.3s ease;
 }
 
-.nav-contact:hover::after {
+.nav-link:hover::after,
+.nav-link--active::after {
     width: 100%;
+}
+
+.nav-link--active {
+    color: var(--accent-red);
+}
+
+/* Only show the active-link highlight on desktop */
+@media (max-width: 768px) {
+    .nav-link--active {
+        color: var(--text-primary);
+    }
+    .nav-link--active::after {
+        width: 0%;
+    }
 }
 
 /* ================= HERO SECTION ================= */
@@ -1056,13 +1074,27 @@ html.lenis {
 }
 
 .mobile-nav-label {
-    font-size: clamp(3rem, 13vw, 5.5rem);
+    font-size: clamp(2rem, 8vw, 4.5rem);
     font-weight: 800;
     text-transform: uppercase;
     line-height: 1;
     letter-spacing: -0.03em;
     display: inline-block;
     transition: color 0.3s ease;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Tighter scaling & padding for very small devices */
+@media (max-width: 480px) {
+    .mobile-nav {
+        padding: 0 1.25rem;
+    }
+    .mobile-nav-label {
+        font-size: clamp(1.4rem, 9vw, 2.8rem);
+        letter-spacing: -0.04em;
+    }
 }
 
 .mobile-nav-index {
