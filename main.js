@@ -331,3 +331,70 @@ if (amdocsGif) {
     });
 }());
 
+
+// ==========================================
+// ACTIVE NAV LINK — SCROLL-BASED HIGHLIGHT (Desktop only)
+// ==========================================
+(function () {
+    const navLinks = document.querySelectorAll('.nav-links .nav-link[data-section]');
+    if (!navLinks.length) return;
+
+    // Map section id -> nav link element
+    const sectionMap = {};
+    navLinks.forEach(link => {
+        sectionMap[link.dataset.section] = link;
+    });
+
+    // Sections to observe: experience, qualifications, projects, contact (footer)
+    const sectionIds = ['experience', 'qualifications', 'projects', 'contact'];
+    const sections = sectionIds
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+    // Track which sections are currently intersecting
+    const visible = new Set();
+
+    function updateActiveLink() {
+        // Only apply on desktop
+        if (window.innerWidth < 769) {
+            navLinks.forEach(l => l.classList.remove('nav-link--active'));
+            return;
+        }
+
+        // Find the first section (in DOM order) that is currently visible
+        let activeSection = null;
+        for (const id of sectionIds) {
+            if (visible.has(id)) {
+                activeSection = id;
+                break;
+            }
+        }
+
+        navLinks.forEach(link => {
+            if (link.dataset.section === activeSection) {
+                link.classList.add('nav-link--active');
+            } else {
+                link.classList.remove('nav-link--active');
+            }
+        });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                visible.add(entry.target.id);
+            } else {
+                visible.delete(entry.target.id);
+            }
+        });
+        updateActiveLink();
+    }, {
+        // Trigger when at least 20% of the section is visible
+        threshold: 0.2
+    });
+
+    sections.forEach(sec => observer.observe(sec));
+
+    // Re-evaluate on resize (handles switching between mobile/desktop)
+    window.addEventListener('resize', updateActiveLink);
+}());
