@@ -361,9 +361,11 @@ if (amdocsGif) {
             return;
         }
 
-        // Find the first section (in DOM order) that is currently visible
+        // Find the LAST section (in DOM order) that is currently visible
+        // This ensures that when scrolling down, the newly entered section takes precedence
         let activeSection = null;
-        for (const id of sectionIds) {
+        for (let i = sectionIds.length - 1; i >= 0; i--) {
+            const id = sectionIds[i];
             if (visible.has(id)) {
                 activeSection = id;
                 break;
