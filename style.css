@@ -417,6 +417,11 @@ html.lenis {
     font-weight: 600;
 }
 
+/* When a role label follows a bullet list, give it breathing room */
+.exp-details + .exp-role {
+    margin-top: 2rem;
+}
+
 .exp-details {
     list-style: none;
     color: rgba(255, 255, 255, 0.8);
